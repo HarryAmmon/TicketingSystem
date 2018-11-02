@@ -30,7 +30,7 @@ public class LinkedList {
 		length++;
 	}
 
-	/*public Ticket[] getAllData() {
+	public Ticket[] getAllData() {
 		Node currentNode = head;
 		Ticket data[] = new Ticket[length];
 		for (int i = 0; i < length; i++) {
@@ -39,7 +39,7 @@ public class LinkedList {
 		}
 		return data;
 
-	}*/
+	}
 
 	public Ticket get(int j) {
 		Node currentNode = head;

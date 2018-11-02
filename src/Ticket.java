@@ -1,4 +1,3 @@
-
 public class Ticket {
 	private int ID;
 	private String creator;
@@ -10,7 +9,7 @@ public class Ticket {
 	 * This way I can ensure a unique ID is assigned.
 	 */
 	public Ticket(String j, String k, int u){
-		if(4 >= u && u <= 1) {
+		if(4 >= u && u >= 1) {
 			creator = j;
 			owner = k;
 			priority = u;
@@ -23,6 +22,10 @@ public class Ticket {
 			System.out.println("3.Software Installation");
 			System.out.println("4.New Computer Configuration");
 		}
+	}
+	public void setID() {
+		long unixTime = System.currentTimeMillis() / 1000;	
+		ID = priority * Math.toIntExact(unixTime);
 	}
 	
 	public int getID() {
