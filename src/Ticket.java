@@ -23,10 +23,21 @@ public class Ticket {
 			System.out.println("4.New Computer Configuration");
 		}
 	}
-	public void setID() {
-		long unixTime = System.currentTimeMillis() / 1000;	
-		ID = priority * Math.toIntExact(unixTime);
+	public void setID(int i) {
+		ID = i;
+		/*int unixTime = (int) System.currentTimeMillis();
+		do {
+			ID = priority * Math.toIntExact(unixTime);
+		}
+		while (isUnique(ID));
+		return true;*/
+		
 	}
+	
+	/*private boolean isUnique(int i) {
+		getLength();
+		return true;
+	}*/
 	
 	public int getID() {
 		return ID;
@@ -40,7 +51,7 @@ public class Ticket {
 		return owner;
 	}
 	
-	public int priority() {
+	public int getPriority() {
 		return priority;
 	}
 }
