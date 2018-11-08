@@ -25,19 +25,8 @@ public class Ticket {
 	}
 	public void setID(int i) {
 		ID = i;
-		/*int unixTime = (int) System.currentTimeMillis();
-		do {
-			ID = priority * Math.toIntExact(unixTime);
-		}
-		while (isUnique(ID));
-		return true;*/
 		
 	}
-	
-	/*private boolean isUnique(int i) {
-		getLength();
-		return true;
-	}*/
 	
 	public int getID() {
 		return ID;
@@ -53,5 +42,10 @@ public class Ticket {
 	
 	public int getPriority() {
 		return priority;
+	}
+	
+	public void setPriority(int i) {
+		priority = i;
+		
 	}
 }
