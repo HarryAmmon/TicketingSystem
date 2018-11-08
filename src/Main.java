@@ -22,9 +22,9 @@ public class Main {
 		}
 		
 		for (int i = 0; i<tickets.getLength();i++) {
-			System.out.println(tickets.getAllData(i));
+			System.out.println(tickets.getAllDataBetter(i));
 		}
-		
+		/*
 		Ticket ticket1 = new Ticket("Harry","Andy",1);
 		tickets.addBest(new Node(ticket1));
 			
@@ -48,6 +48,9 @@ public class Main {
 		for (int i = 0; i<tickets.getLength();i++) {
 			System.out.println(tickets.getAllData(i));
 		}
+		
+		System.out.println(tickets.pop().getData().getID());
+		
 		
 		/*System.out.println("First node added");
 		System.out.println(tickets.get(0).getPriority()+"\n");

@@ -19,11 +19,45 @@ public class LinkedList {
 	}
 
 	/**
+	 * Removes and returns the last node in the list
+	 * 
+	 * @return last node
+	 */
+	public Node pop() {
+		Node currentNode = head;
+		Node temp = null;
+		while (currentNode.getNext() != null) {
+			temp = currentNode;
+			currentNode = currentNode.getNext();
+		}
+		temp.updatePointer(null);
+		length--;
+		return currentNode;
+	}
+
+	/**
+	 * 
+	 * @param Node n
+	 * @return true when node is added
+	 */
+	private boolean push(Node n) {
+		if (createID(n)) {
+			n.updatePointer(head);
+			head = n;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	/**
 	 * Adds node to the back of the queue
 	 * 
 	 * @param Node n
-	 * @return true is was added succesfully, else if not
+	 * @return true is was added successfully, else if not
 	 */
+	
 	public boolean addBetter(Node n) {
 		Node currentNode = head;
 		if (createID(n)) {
@@ -34,90 +68,18 @@ public class LinkedList {
 		} else
 			return false;
 	}
-
-	public boolean addBest(Node n) {
-		Node currentNode = head;
-		Node pointTo = after(n);
-		
-		boolean added = false;
-		//while(!added) {
-			if(createID(n)) {
-				//If list is empty, insert the node and make that node the head
-				if(head==null) { 
-					head = n;
-					length++;
-					added=true;
-				}
-				// If the list length is 1,
-				else if(getLength()==1) {
-					// if (currentNode priority is higher or equal than the priority of the node to be added)
-					if(currentNode.getData().getPriority() <= n.getData().getPriority()) {
-						n.updatePointer(currentNode);
-						head = n;
-						length++;
-						added = true;
-					}
-					else {
-						head.updatePointer(n);
-						length++;
-						added = true;
-					}
-				}
-				else if(getLength()>1) {
-					// Was unable to find location to add new node to
-					if(pointTo==n) {
-						System.out.println("Unable to add node");
-						return false;
-					}
-					else {
-						while(!added) {
-							if (currentNode.getNext() == pointTo) {
-								n.updatePointer(currentNode.getNext());
-								currentNode.updatePointer(n);
-								length++;
-								added = true;
-							}
-							else if(pointTo == head) {
-								n.updatePointer(head);
-								head=n;
-								length++;
-								added = true;
-							}
-							else {
-								currentNode = currentNode.getNext();
-							}
-						}
-					}
-					added=true;
-				}
-				// If the priority of the current node is higher or equal to the added nodes priority
-				//if(currentNode.getData().getPriority() <= n.getData().getPriority()) {}
-		}
-			else {
-				added=false;
-				}
-		//}
-		return added;
-	}
-
-	public void pop() {
-		// Find the last item in the list
-		// Find pointer to the last item
-		// Remove the pointer
-		Node currentNode = head;
-		// Node last = null;
-		// Find the last item
-		while (currentNode.getNext() != null) {
-			currentNode = currentNode.getNext();
-		}
-		containsNode(currentNode).updatePointer(null);
-		length--;
-	}
-
+	
 	public String getAllData(int i) {
 		String data = "";
-		data = "ID: "+this.get(i).getID()+"::"+"Owner: "+this.get(i).getOwner()+"::"+"Creator: "+this.get(i).getCreator()+"::"+"Priority: "+this.get(i).getPriority()+"::";
+		data = "ID: " + this.get(i).getID() + "::" + "Owner: " + this.get(i).getOwner() + "::" + "Creator: "
+				+ this.get(i).getCreator() + "::" + "Priority: " + this.get(i).getPriority() + "::";
 		return data;
+	}
+	
+	public String getAllDataBetter(int i) {
+		String data = "";
+		data = data.format("|%7d|%10s|%10s|%1s",this.get(i).getID(), this.get(i).getOwner(),this.get(i).getCreator(),this.get(i).getPriority());
+		return data;	
 	}
 
 	public Ticket get(int j) {
@@ -127,18 +89,28 @@ public class LinkedList {
 		}
 		return currentNode.getData();
 	}
-
+	/**
+	 * Creates and assigns a unique ID to the ticket
+	 * Will keep trying to assign an ID until a unique ID is found
+	 * @param n
+	 * @return true if successful
+	 */
 	private boolean createID(Node n) {
 		Random rand = new Random();
-		int ID = rand.nextInt(99999) + 10000;
-		if (!containsID(ID)) {
+		int ID = rand.nextInt(99999) + 10000; // Generates a random ID
+		if (!containsID(ID)) {	// Checks to see if the ID is already been used
 			n.getData().setID(ID);
 			return true;
 		} else {
-			return false;
+			return createID(n);
 		}
 	}
-
+	
+	/**
+	 * Checks to see if ID is already used
+	 * @param ID
+	 * @return true if ID has been used, false if not
+	 */
 	private boolean containsID(int value) {
 		Node currentNode = head;
 		while (currentNode != null) {
@@ -169,23 +141,24 @@ public class LinkedList {
 		System.out.println("Node n returned");
 		return n;
 	}
-	
+
 	/**
 	 * Will return the node that the new node should point to
+	 * 
 	 * @param n
 	 * @return
 	 */
 	private Node after(Node n) {
 		Node currentNode = head;
-		while(currentNode.getNext() != null) {
-			if(currentNode.getData().getPriority() <= n.getData().getPriority()) {
+		while (currentNode.getNext() != null) {
+			if (currentNode.getData().getPriority() <= n.getData().getPriority()) {
 				return currentNode;
-			}
-			else {
+			} else {
 				currentNode = currentNode.getNext();
 			}
 		}
 		return n;
 	}
-	
+
+
 }
