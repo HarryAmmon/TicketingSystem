@@ -4,7 +4,7 @@ public class LinkedList {
 	public Node head;
 	private int length;
 
-	/*
+	/**
 	 * Constructor
 	 */
 	public LinkedList() {
@@ -69,6 +69,7 @@ public class LinkedList {
 			return false;
 	}
 
+	@SuppressWarnings(value = { "static-access" })
 	public String getAllData(int i) {
 		String data = "";
 		data = data.format("|%7d|%10s|%10s|%1s", this.get(i).getID(), this.get(i).getOwner(), this.get(i).getCreator(),
@@ -119,44 +120,6 @@ public class LinkedList {
 		return false;
 	}
 
-	/**
-	 * Searches for pointer to node
-	 * 
-	 * @param n
-	 * @return
-	 */
-	private Node containsNode(Node n) {
-		Node currentNode = head;
-		for (int i = 0; i < getLength(); i++) {
-			if (currentNode.getNext() == n) {
-				System.out.println("currentNode was returned! Had id: " + currentNode.getData().getID());
-				return currentNode;
-			} else {
-				currentNode = currentNode.getNext();
-			}
-		}
-		System.out.println("Node n returned");
-		return n;
-	}
-
-	/**
-	 * Will return the node that the new node should point to
-	 * 
-	 * @param n
-	 * @return
-	 */
-	private Node after(Node n) {
-		Node currentNode = head;
-		while (currentNode.getNext() != null) {
-			if (currentNode.getData().getPriority() <= n.getData().getPriority()) {
-				return currentNode;
-			} else {
-				currentNode = currentNode.getNext();
-			}
-		}
-		return n;
-	}
-
 	public boolean add(Node n) {
 		Node currentNode = head;
 		boolean added = false;
@@ -167,20 +130,15 @@ public class LinkedList {
 				length++;
 				return true;
 			}
-			if (length == 1) {
-				if (currentNode.getData().getPriority() >= n.getData().getPriority()) {
-					currentNode.updatePointer(n);
-					length++;
-					return true;
-				}
-				else {
-					n.updatePointer(currentNode);
-					head = n;
-				}
+			if (n.getData().getPriority() >= head.getData().getPriority()) {
+				n.updatePointer(head);
+				head = n;
+				length++;
+				return true;
 			}
+
 			while (!added) {
-				System.out.println("While loop in add was reached");
-				if (currentNode.getData().getPriority() >= n.getData().getPriority()
+				if (currentNode.getData().getPriority() <= n.getData().getPriority()
 						&& currentNode.getNext().getData().getPriority() <= n.getData().getPriority()) {
 					n.updatePointer(currentNode.getNext());
 					currentNode.updatePointer(n);
@@ -193,6 +151,6 @@ public class LinkedList {
 			return added;
 		}
 		return false;
-	}
 
+	}
 }
