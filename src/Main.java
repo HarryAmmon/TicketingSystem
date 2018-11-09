@@ -18,18 +18,19 @@ public class Main {
 		 */
 
 		for (int a = 0; a < quickTickets.length; a++) {
-			tickets.addBetter(new Node(quickTickets[a]));
+			if(tickets.add(new Node(quickTickets[a]))) {
+				System.out.println(tickets.get(a).getID()+" was added");
+			}
+			
 		}
 		
 		for (int i = 0; i<tickets.getLength();i++) {
-			System.out.println(tickets.getAllDataBetter(i));
+			System.out.println(tickets.getAllData(i));
 		}
 		/*
 		Ticket ticket1 = new Ticket("Harry","Andy",1);
-		tickets.addBest(new Node(ticket1));
-			
-		
-		
+		tickets.addBest(new Node(ticket1));			
+				
 		Ticket ticket2 = new Ticket("Harry","Andy",2);
 		if(tickets.addBest(new Node(ticket2))){
 			System.out.println("Node added");

@@ -40,24 +40,24 @@ public class LinkedList {
 	 * @param Node n
 	 * @return true when node is added
 	 */
-	private boolean push(Node n) {
+	public boolean push(Node n) {
 		if (createID(n)) {
 			n.updatePointer(head);
 			head = n;
+			length++;
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Adds node to the back of the queue
 	 * 
 	 * @param Node n
 	 * @return true is was added successfully, else if not
 	 */
-	
+
 	public boolean addBetter(Node n) {
 		Node currentNode = head;
 		if (createID(n)) {
@@ -68,18 +68,12 @@ public class LinkedList {
 		} else
 			return false;
 	}
-	
+
 	public String getAllData(int i) {
 		String data = "";
-		data = "ID: " + this.get(i).getID() + "::" + "Owner: " + this.get(i).getOwner() + "::" + "Creator: "
-				+ this.get(i).getCreator() + "::" + "Priority: " + this.get(i).getPriority() + "::";
+		data = data.format("|%7d|%10s|%10s|%1s", this.get(i).getID(), this.get(i).getOwner(), this.get(i).getCreator(),
+				this.get(i).getPriority());
 		return data;
-	}
-	
-	public String getAllDataBetter(int i) {
-		String data = "";
-		data = data.format("|%7d|%10s|%10s|%1s",this.get(i).getID(), this.get(i).getOwner(),this.get(i).getCreator(),this.get(i).getPriority());
-		return data;	
 	}
 
 	public Ticket get(int j) {
@@ -89,25 +83,28 @@ public class LinkedList {
 		}
 		return currentNode.getData();
 	}
+
 	/**
-	 * Creates and assigns a unique ID to the ticket
-	 * Will keep trying to assign an ID until a unique ID is found
+	 * Creates and assigns a unique ID to the ticket Will keep trying to assign an
+	 * ID until a unique ID is found
+	 * 
 	 * @param n
 	 * @return true if successful
 	 */
 	private boolean createID(Node n) {
 		Random rand = new Random();
 		int ID = rand.nextInt(99999) + 10000; // Generates a random ID
-		if (!containsID(ID)) {	// Checks to see if the ID is already been used
+		if (!containsID(ID)) { // Checks to see if the ID is already been used
 			n.getData().setID(ID);
 			return true;
 		} else {
 			return createID(n);
 		}
 	}
-	
+
 	/**
 	 * Checks to see if ID is already used
+	 * 
 	 * @param ID
 	 * @return true if ID has been used, false if not
 	 */
@@ -160,5 +157,42 @@ public class LinkedList {
 		return n;
 	}
 
+	public boolean add(Node n) {
+		Node currentNode = head;
+		boolean added = false;
+		if (createID(n)) {
+			// If list is empty
+			if (head == null) {
+				head = n;
+				length++;
+				return true;
+			}
+			if (length == 1) {
+				if (currentNode.getData().getPriority() >= n.getData().getPriority()) {
+					currentNode.updatePointer(n);
+					length++;
+					return true;
+				}
+				else {
+					n.updatePointer(currentNode);
+					head = n;
+				}
+			}
+			while (!added) {
+				System.out.println("While loop in add was reached");
+				if (currentNode.getData().getPriority() >= n.getData().getPriority()
+						&& currentNode.getNext().getData().getPriority() <= n.getData().getPriority()) {
+					n.updatePointer(currentNode.getNext());
+					currentNode.updatePointer(n);
+					length++;
+					added = true;
+				} else {
+					currentNode = currentNode.getNext();
+				}
+			}
+			return added;
+		}
+		return false;
+	}
 
 }
