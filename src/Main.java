@@ -5,31 +5,35 @@ public class Main {
 		LinkedList tickets = new LinkedList();
 		
 		Ticket[] quickTickets = new Ticket[8];
+		quickTickets[6] = new Ticket("Tyler", "Lauren", 4);
 		quickTickets[0] = new Ticket("Andy", "Harry", 1);
-		quickTickets[1] = new Ticket("Alex", "Matt", 1);
+		
 		quickTickets[2] = new Ticket("Steffi", "Lauren", 2);
 		quickTickets[3] = new Ticket("James", "Jack", 2);
-		quickTickets[4] = new Ticket("George", "Harry", 3);
+		
 		quickTickets[5] = new Ticket("Brandon", "Matt", 3);
-		quickTickets[6] = new Ticket("Tyler", "Lauren", 4);
+		
 		quickTickets[7] = new Ticket("Felix", "Jack", 4);
+		quickTickets[4] = new Ticket("George", "Harry", 3);
+		quickTickets[1] = new Ticket("Alex", "Matt", 1);
 		/*
 		 * Add these quickTickets to the linked list
 		 */
 
 		for (int a = 0; a < quickTickets.length; a++) {
-			tickets.addBetter(new Node(quickTickets[a]));
+			if(tickets.add(new Node(quickTickets[a]))) {
+				System.out.println(tickets.get(a).getID()+" was added");
+			}
+			
 		}
 		
 		for (int i = 0; i<tickets.getLength();i++) {
 			System.out.println(tickets.getAllData(i));
 		}
-		
+		/*
 		Ticket ticket1 = new Ticket("Harry","Andy",1);
-		tickets.addBest(new Node(ticket1));
-			
-		
-		
+		tickets.addBest(new Node(ticket1));			
+				
 		Ticket ticket2 = new Ticket("Harry","Andy",2);
 		if(tickets.addBest(new Node(ticket2))){
 			System.out.println("Node added");
@@ -48,6 +52,9 @@ public class Main {
 		for (int i = 0; i<tickets.getLength();i++) {
 			System.out.println(tickets.getAllData(i));
 		}
+		
+		System.out.println(tickets.pop().getData().getID());
+		
 		
 		/*System.out.println("First node added");
 		System.out.println(tickets.get(0).getPriority()+"\n");
