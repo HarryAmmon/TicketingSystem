@@ -35,40 +35,6 @@ public class LinkedList {
 		return currentNode;
 	}
 
-	/**
-	 * 
-	 * @param Node n
-	 * @return true when node is added
-	 */
-	public boolean push(Node n) {
-		if (createID(n)) {
-			n.updatePointer(head);
-			head = n;
-			length++;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Adds node to the back of the queue
-	 * 
-	 * @param Node n
-	 * @return true is was added successfully, else if not
-	 */
-
-	public boolean addBetter(Node n) {
-		Node currentNode = head;
-		if (createID(n)) {
-			n.updatePointer(currentNode);
-			head = n;
-			length++;
-			return true;
-		} else
-			return false;
-	}
-
 	@SuppressWarnings(value = { "static-access" })
 	public String getAllData(int i) {
 		String data = "";

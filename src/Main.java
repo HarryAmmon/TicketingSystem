@@ -9,17 +9,17 @@ public class Main {
 		quickTickets[0] = new Ticket("Andy", "Harry", 1);
 		
 		quickTickets[2] = new Ticket("Steffi", "Lauren", 2);
-<<<<<<< HEAD
+
 		quickTickets[3] = new Ticket("James", "Jack", 2);
 		
 		quickTickets[5] = new Ticket("Brandon", "Matt", 3);
 		
-=======
+
 		
 		
 		quickTickets[5] = new Ticket("Brandon", "Matt", 3);
 		quickTickets[3] = new Ticket("James", "Jack", 2);
->>>>>>> a1554b94e359014a6119f05bb7b67847ba4126ab
+
 		quickTickets[7] = new Ticket("Felix", "Jack", 4);
 		quickTickets[4] = new Ticket("George", "Harry", 3);
 		quickTickets[1] = new Ticket("Alex", "Matt", 1);
@@ -28,13 +28,13 @@ public class Main {
 		 */
 
 		for (int a = 0; a < quickTickets.length; a++) {
-<<<<<<< HEAD
+
 			if(tickets.add(new Node(quickTickets[a]))) {
 				System.out.println(tickets.get(a).getID()+" was added");
 			}
-=======
+
 			tickets.add(new Node(quickTickets[a]));
->>>>>>> a1554b94e359014a6119f05bb7b67847ba4126ab
+
 			
 		}
 		
