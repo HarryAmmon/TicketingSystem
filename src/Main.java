@@ -20,62 +20,62 @@ public class Main {
 		/*
 		 * Populates the linked list with these tickets
 		 */
-
 		for (int a = 0; a < quickTickets.length; a++) {
 			tickets.add(new Node(quickTickets[a]));
 		}
 		/*
 		 *  Shows the linked list
 		 */
+		System.out.println("These tickets have been created for demonstation purposes:");
 		for (int i = 0; i<tickets.getLength();i++) {
 			System.out.println(tickets.getAllData(i));
 		}
 		System.out.println();
-		
-		/*Ticket ticket1 = new Ticket("Harry","Andy",1);
-		tickets.add(new Node(ticket1));*/			
-		
-		tickets.remove(tickets.get(5).getData().getID());
-		
+		/*
+		 * Add a new ticket
+		 */
+		Ticket ticket1 = new Ticket("Harry","Andy",1);
+		tickets.add(new Node(ticket1));
+		/*
+		 *  Shows the linked list
+		 */
+		System.out.println("Below a ticket with priority 1 has been added");
 		for (int i = 0; i<tickets.getLength();i++) {
 			System.out.println(tickets.getAllData(i));
 		}
-		
-		/*Ticket ticket2 = new Ticket("Harry","Andy",2);
-		if(tickets.addBest(new Node(ticket2))){
-			System.out.println("Node added");
-		}
-		
-		Ticket ticket3 = new Ticket("Harry","Andy",3);
-		if(tickets.addBest(new Node(ticket3))){
-			System.out.println("Node added");
-		}
-		
-		Ticket ticket4 = new Ticket("Harry","Andy",4);
-		if(tickets.addBest(new Node(ticket4))){
-			System.out.println("Node added");
-		}
-		
+		System.out.println();
+		/*
+		 * Removes an item from the linked list
+		 */
+		tickets.remove(tickets.get(5).getData().getID());		
+		/*
+		 * Shows the linked list
+		 */
+		System.out.println("A ticket has been removed from the list");
 		for (int i = 0; i<tickets.getLength();i++) {
 			System.out.println(tickets.getAllData(i));
 		}
-		
-		System.out.println(tickets.pop().getData().getID());
-		
-		
-		/*System.out.println("First node added");
-		System.out.println(tickets.get(0).getPriority()+"\n");
-		
-		Ticket ticket2 = new Ticket("Steve","Dave",1);
-		tickets.addBest(new Node(ticket2));
-		
-		/*Ticket ticket3 = new Ticket("Steve","Dave",4);
-		tickets.addBest(new Node(ticket3));*/
-		
-		/*for (int i = 0; i<tickets.getLength();i++) {
-			System.out.println(tickets.getAllData()[i].getPriority());
-		}*/
-	}
+		System.out.println();
 	
-
+		System.out.println("Ticket with ID "+tickets.get(6).getData().getID()+" has had its priority changed from "+tickets.get(6).getData().getPriority()+" to 3");
+		
+		/*
+		 * Changes the priority of an item in the linked list
+		 */
+		tickets.changePriority(tickets.get(6).getData().getID(), 3);
+		
+		for (int i = 0; i<tickets.getLength();i++) {
+			System.out.println(tickets.getAllData(i));
+		}
+		System.out.println();
+		/*
+		 * Returns the last item from the list
+		 */
+		
+		System.out.println("The pop function will remove and return the last item in the list "+tickets.pop());
+		for (int i = 0; i<tickets.getLength();i++) {
+			System.out.println(tickets.getAllData(i));
+		}
+		System.out.println();
+	}
 }
